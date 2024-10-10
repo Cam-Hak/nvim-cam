@@ -154,24 +154,35 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      jdtls = {},
-      -- ruff = {},
-      -- pylsp = {
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         pyflakes = { enabled = false },
-      --         pycodestyle = { enabled = false },
-      --         autopep8 = { enabled = false },
-      --         yapf = { enabled = false },
-      --         mccabe = { enabled = false },
-      --         pylsp_mypy = { enabled = false },
-      --         pylsp_black = { enabled = false },
-      --         pylsp_isort = { enabled = false },
-      --       },
-      --     },
-      --   },
-      -- }, -- pyright = {},
+      jdtls = {
+        handlers = {
+          ['textDocument/publishDiagnostics'] = function() end,
+        },
+        on_attach = function(client, _)
+          client.server_capabilities.codeActionProvider = false
+        end,
+      },
+      black = {},
+      pyright = {
+        handlers = {
+          ['textDocument/publishDiagnostics'] = function() end,
+        },
+        on_attach = function(client, _)
+          client.server_capabilities.codeActionProvider = false
+        end,
+        settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              typeCheckingMode = 'basic',
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      },
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -218,7 +229,9 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
+      'black',
       'jdtls',
+      'pyright',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
