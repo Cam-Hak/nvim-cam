@@ -9,7 +9,7 @@ return {
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
@@ -164,34 +164,25 @@ return {
       },
       black = {},
       pyright = {
-        handlers = {
-          ['textDocument/publishDiagnostics'] = function() end,
-        },
-        on_attach = function(client, _)
-          client.server_capabilities.codeActionProvider = false
-        end,
-        settings = {
-          pyright = {
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              typeCheckingMode = 'basic',
-              useLibraryCodeForTypes = true,
-            },
-          },
-        },
+        -- handlers = {
+        --   ['textDocument/publishDiagnostics'] = function() end,
+        -- },
+        -- on_attach = function(client, _)
+        --   client.server_capabilities.codeActionProvider = false
+        -- end,
+        -- settings = {
+        --   pyright = {
+        --     disableOrganizeImports = true,
+        --   },
+        --   python = {
+        --     analysis = {
+        --       autoSearchPaths = true,
+        --       typeCheckingMode = 'basic',
+        --       useLibraryCodeForTypes = true,
+        --     },
+        --   },
+        -- },
       },
-      -- rust_analyzer = {},
-      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      --
-      -- Some languages (like typescript) have entire language plugins that can be useful:
-      --    https://github.com/pmizio/typescript-tools.nvim
-      --
-      -- But for many setups, the LSP (`ts_ls`) will work just fine
-      -- ts_ls = {},
-      --
 
       lua_ls = {
         -- cmd = {...},
@@ -231,7 +222,6 @@ return {
       'stylua', -- Used to format Lua code
       'black',
       'jdtls',
-      'pyright',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
