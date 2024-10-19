@@ -9,7 +9,7 @@ return {
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
@@ -163,27 +163,47 @@ return {
         end,
       },
       black = {},
-      pyright = {
-        -- handlers = {
-        --   ['textDocument/publishDiagnostics'] = function() end,
-        -- },
-        -- on_attach = function(client, _)
-        --   client.server_capabilities.codeActionProvider = false
-        -- end,
-        -- settings = {
-        --   pyright = {
-        --     disableOrganizeImports = true,
-        --   },
-        --   python = {
-        --     analysis = {
-        --       autoSearchPaths = true,
-        --       typeCheckingMode = 'basic',
-        --       useLibraryCodeForTypes = true,
-        --     },
-        --   },
-        -- },
+      pylsp = {
+        handlers = {
+          ['textDocument/publishDiagnostics'] = function() end,
+        },
+        on_attach = function(client, _)
+          client.server_capabilities.codeActionProvider = false
+        end,
+        settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              typeCheckingMode = 'basic',
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
       },
-
+      -- pyright = {
+      --   -- handlers = {
+      --   --   ['textDocument/publishDiagnostics'] = function() end,
+      --   -- },
+      --   -- on_attach = function(client, _)
+      --   --   client.server_capabilities.codeActionProvider = false
+      --   -- end,
+      --   -- settings = {
+      --   --   pyright = {
+      --   --     disableOrganizeImports = true,
+      --   --   },
+      --   --   python = {
+      --   --     analysis = {
+      --   --       autoSearchPaths = true,
+      --   --       typeCheckingMode = 'basic',
+      --   --       useLibraryCodeForTypes = true,
+      --   --     },
+      --   --   },
+      --   -- },
+      -- },
+      --
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
