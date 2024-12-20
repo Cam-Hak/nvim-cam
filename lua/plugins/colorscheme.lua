@@ -23,9 +23,9 @@
 --   end,
 -- }
 return {
-  'Mofiqul/vscode.nvim',
+  'ellisonleao/gruvbox.nvim',
   init = function()
-    vim.cmd.colorscheme 'vscode'
+    vim.cmd.colorscheme 'gruvbox'
   end,
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,
