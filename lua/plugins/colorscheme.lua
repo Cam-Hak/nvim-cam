@@ -23,9 +23,14 @@
 --   end,
 -- }
 return {
-  'ellisonleao/gruvbox.nvim',
+  'catppuccin/nvim',
   init = function()
-    vim.cmd.colorscheme 'gruvbox'
+    vim.cmd.colorscheme 'catppuccin'
+  end,
+  config = function()
+    require('catppuccin').setup {
+      transparent_background = true,
+    }
   end,
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,
