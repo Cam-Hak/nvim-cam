@@ -22,16 +22,22 @@
 --     ColorMyPencils()
 --   end,
 -- }
+-- return {
+--   'catppuccin/nvim',
+--   init = function()
+--     vim.cmd.colorscheme 'catppuccin'
+--   end,
+--   config = function()
+--     require('catppuccin').setup {
+--       transparent_background = true,
+--     }
+--   end,
 return {
-  'catppuccin/nvim',
+  'ellisonleao/gruvbox.nvim',
   init = function()
-    vim.cmd.colorscheme 'catppuccin'
+    vim.cmd.colorscheme 'gruvbox'
   end,
-  config = function()
-    require('catppuccin').setup {
-      transparent_background = true,
-    }
-  end,
+
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,
   -- priority = 1000,
