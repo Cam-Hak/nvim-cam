@@ -33,10 +33,14 @@
 --     }
 --   end,
 return {
-  'ellisonleao/gruvbox.nvim',
+  'EdenEast/nightfox.nvim',
   init = function()
-    vim.cmd.colorscheme 'gruvbox'
+    vim.cmd.colorscheme 'carbonfox'
   end,
+  -- 'ellisonleao/gruvbox.nvim',
+  -- init = function()
+  --   vim.cmd.colorscheme 'gruvbox'
+  -- end,
 
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,

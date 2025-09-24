@@ -26,5 +26,6 @@ require('lazy').setup {
   require 'plugins.gitsigns',
   require 'plugins.indent-blankline',
   require 'plugins.misc',
+  require 'plugins.rainbowcsv',
   -- require 'plugins.obsidian',
 }
