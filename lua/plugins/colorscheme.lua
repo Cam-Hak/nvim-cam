@@ -33,14 +33,27 @@
 --     }
 --   end,
 return {
-  'EdenEast/nightfox.nvim',
-  init = function()
-    vim.cmd.colorscheme 'carbonfox'
-  end,
-  -- 'ellisonleao/gruvbox.nvim',
+  -- 'EdenEast/nightfox.nvim',
   -- init = function()
-  --   vim.cmd.colorscheme 'gruvbox'
+  -- vim.cmd.colorscheme 'carbonfox'
   -- end,
+  'folke/tokyonight.nvim',
+  init = function()
+    require('tokyonight').setup {
+      transparent_mode = true,
+      bold = false,
+      contrast = 'hard',
+      italic = {
+        string = false,
+        emphasis = false,
+        comments = false,
+        operators = false,
+        folds = false,
+      },
+    }
+
+    vim.cmd.colorscheme 'tokyonight-night'
+  end,
 
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,

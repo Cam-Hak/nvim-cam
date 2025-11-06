@@ -15,6 +15,28 @@ return {
     'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
+    -- --- LSP compat helpers (NVIM 0.9 & 0.10+) -------------------------------
+    local Methods = (vim.lsp.protocol and vim.lsp.protocol.Methods) or {}
+    local M_DOC_HL = Methods.textDocument_documentHighlight or 'textDocument/documentHighlight'
+    local M_INLAY = Methods.textDocument_inlayHint or 'textDocument/inlayHint'
+
+    local function supports(client, method)
+      -- client.supports_method exists in 0.9+, keep string fallback for 0.8
+      return client.supports_method and client:supports_method(method)
+    end
+
+    -- inlay hints wrapper (0.10: enable()/is_enabled(); 0.9: vim.lsp.inlay_hint(buf, bool))
+    local function toggle_inlay_hints(bufnr)
+      local ih = vim.lsp.inlay_hint
+      if type(ih) == 'table' and ih.enable then
+        ih.enable(not ih.is_enabled { bufnr = bufnr }, { bufnr = bufnr }) -- 0.10+
+      else
+        -- 0.9 fallback: no query API; just flip a buffer var we track
+        vim.b.__inlay_hints_on = not vim.b.__inlay_hints_on
+        pcall(ih, bufnr, vim.b.__inlay_hints_on)
+      end
+    end
+    -- -------------------------------------------------------------------------
     -- Brief aside: **What is LSP?**
     --
     -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -100,7 +122,7 @@ return {
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client and supports(client, M_DOC_HL) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
@@ -127,9 +149,9 @@ return {
         -- code, if the language server you are using supports them
         --
         -- This may be unwanted, since they displace some of your code
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if client and supports(client, M_INLAY) then
           map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            toggle_inlay_hints(event.buf)
           end, '[T]oggle Inlay [H]ints')
         end
       end,

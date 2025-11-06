@@ -89,7 +89,7 @@ return { -- Autocompletion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
-        -- Accept ([y]es) the completion. 
+        -- Accept ([y]es) the completion.
         --  This will auto-import if your LSP supports it.
 
         ['<C-y>'] = cmp.mapping.confirm { select = true },
