@@ -1,7 +1,7 @@
 -- functionality
 vim.o.clipboard = 'unnamedplus'
 vim.o.mouse = 'a'
-vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:block'
+-- vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:block,r-cr-o:block'
 
 -- display
 vim.wo.number = true

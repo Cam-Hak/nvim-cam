@@ -33,27 +33,25 @@
 --     }
 --   end,
 return {
-  -- 'EdenEast/nightfox.nvim',
-  -- init = function()
-  -- vim.cmd.colorscheme 'carbonfox'
-  -- end,
-  'folke/tokyonight.nvim',
+  'EdenEast/nightfox.nvim',
   init = function()
-    require('tokyonight').setup {
-      transparent_mode = true,
-      bold = false,
-      contrast = 'hard',
-      italic = {
-        string = false,
-        emphasis = false,
-        comments = false,
-        operators = false,
-        folds = false,
-      },
-    }
-
-    vim.cmd.colorscheme 'tokyonight-night'
+    vim.cmd.colorscheme 'carbonfox'
   end,
+  -- 'sainnhe/gruvbox-material',
+  -- lazy = false,
+  -- priority = 1000,
+  -- config = function()
+  --   vim.opt.termguicolors = true
+  --   vim.opt.background = 'dark'
+  --   vim.g.gruvbox_material_enable_italic = false
+  --   vim.g.gruvbox_material_ui_contrast = 'high'
+  --   vim.g.gruvbox_material_background = 'hard'
+  --   vim.g.gruvbox_material_foreground = 'material'
+  --   vim.g.gruvbox_material_enable_bold = '1'
+  --   vim.g.gruvbox_material_better_performance = 1
+  --
+  --   vim.cmd.colorscheme 'gruvbox-material'
+  -- end,
 
   -- 'shaunsingh/nord.nvim',
   -- lazy = false,
